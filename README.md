@@ -16,3 +16,5 @@ Kullanılan Teknolojiler ve paketler:
 - react router
 - redux
 - axios -->yerine fetch kullanılabilir
+- spinner loader
+- react content loader

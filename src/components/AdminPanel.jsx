@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import SkeletonLoader from "./SkeletonLoader"; // SkeletonLoader bileşeni import edildi
 import { clearToken } from "../slices/authSlice";
 import { FaTachometerAlt, FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
 import { Outlet, NavLink } from "react-router-dom";
@@ -11,6 +12,7 @@ const AdminPanel = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(true); // Yükleme durumu
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,6 +25,8 @@ const AdminPanel = () => {
                 setUserData(response.data);
             } catch (err) {
                 console.error("Veri alınamadı:", err);
+            } finally {
+                setLoading(false); // Yükleme durumu tamamlandı
             }
         };
 
@@ -51,7 +55,7 @@ const AdminPanel = () => {
                     <ul className="space-y-4">
                         <li>
                             <NavLink
-                                to="/home"
+                                to="/home/dashboard"
                                 className={({ isActive }) =>
                                     `flex items-center space-x-4 px-4 py-3 rounded-lg ${
                                         isActive ? "bg-gray-300" : "hover:bg-gray-200"
@@ -103,13 +107,16 @@ const AdminPanel = () => {
 
             {/* Main Content */}
             <main className="flex-1 bg-gray-50 p-8">
-                <Outlet /> {/* Dinamik içerik buraya yüklenecek */}
-                {userData && (
-                    <div className="bg-white p-6 rounded-lg shadow-md mt-8">
-                        <h3 className="text-xl font-bold mb-4">User Info</h3>
+                <h1 className="text-3xl font-bold mb-6">Admin Panel</h1>
+                {loading ? (
+                    <SkeletonLoader /> // Yükleme sırasında Skeleton Loader göster
+                ) : (
+                    <div className="bg-white p-6 rounded-lg shadow-md">
+                        <h2 className="text-xl font-bold mb-4">Kullanıcı Bilgileri</h2>
                         <pre className="bg-gray-100 p-4 rounded">{JSON.stringify(userData, null, 2)}</pre>
                     </div>
                 )}
+                <Outlet /> {/* Diğer dinamik içerikler */}
             </main>
         </div>
     );
