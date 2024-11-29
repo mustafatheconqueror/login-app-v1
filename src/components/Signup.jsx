@@ -1,9 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+    const navigate = useNavigate();
+
+    const handleRedirectToLogin = () => {
+        navigate("/");
+    };
+
     return (
         <div className="flex h-screen items-center justify-center bg-gray-100">
-            {/* Signup Form */}
             <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
                 <h1 className="text-2xl font-bold text-gray-800 text-center mb-4">Kayıt Ol</h1>
                 <form>
@@ -94,17 +100,20 @@ const Signup = () => {
                             Kayıt Ol
                         </button>
                     </div>
-
-                    {/* Login Link */}
-                    <div className="text-center">
-                        <p className="text-sm text-gray-600">
-                            Zaten hesabınız var mı?{" "}
-                            <a href="#" className="text-blue-500 font-bold hover:underline">
-                                Giriş Yap
-                            </a>
-                        </p>
-                    </div>
                 </form>
+
+                {/* Login Link */}
+                <div className="text-center">
+                    <p className="text-sm text-gray-600">
+                        Zaten hesabınız var mı?{" "}
+                        <button
+                            onClick={handleRedirectToLogin}
+                            className="text-blue-500 font-bold hover:underline"
+                        >
+                            Giriş Yap
+                        </button>
+                    </p>
+                </div>
             </div>
         </div>
     );

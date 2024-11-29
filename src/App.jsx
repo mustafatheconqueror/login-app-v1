@@ -1,13 +1,9 @@
 import './App.css'
-import Signup from "./components/Signup.jsx";
+import AppRoutes from "./routes/AppRoutes.jsx";
+
 
 function App() {
-
-    return (
-        <div>
-            <Signup/>
-        </div>
-    )
+    return <AppRoutes/>;
 }
 
 export default App
