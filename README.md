@@ -9,8 +9,10 @@ Currently, two official plugins are available:
 
 
 
-Kullanılan Teknolojiler:
+Kullanılan Teknolojiler ve paketler:
 - Javascript
 - React
 - Tailwind css
-- 
+- react router
+- redux
+- axios -->yerine fetch kullanılabilir
