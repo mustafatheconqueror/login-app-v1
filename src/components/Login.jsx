@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md"; // İkonları içe aktar
 
 const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false); // Şifre görünürlük kontrolü
 
     const handleLogin = (e) => {
         e.preventDefault();
         // Login doğrulama simülasyonu
-        if (email === "user@example.com" && password === "password") {
+        if (email === "mustafa@gmail.com" && password === "575757") {
             navigate("/home");
         } else {
             alert("Hatalı giriş bilgileri");
         }
     };
 
-    const handleRedirectToSignup = () => {
-        navigate("/signup");
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword); // Şifre görünürlük durumu değişir
     };
 
     return (
@@ -42,14 +44,27 @@ const Login = () => {
                         <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
                             Şifre
                         </label>
-                        <input
-                            type="password"
-                            id="password"
-                            placeholder="Şifrenizi girin"
-                            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
+                        <div className="relative">
+                            <input
+                                type={showPassword ? "text" : "password"} // Şifre veya düz metin
+                                id="password"
+                                placeholder="Şifrenizi girin"
+                                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <button
+                                type="button"
+                                onClick={togglePasswordVisibility}
+                                className="absolute inset-y-0 right-3 flex items-center text-gray-600 hover:text-gray-800"
+                            >
+                                {showPassword ? (
+                                    <MdVisibilityOff size={24} />
+                                ) : (
+                                    <MdVisibility size={24} />
+                                )}
+                            </button>
+                        </div>
                     </div>
                     <div className="mb-4">
                         <button
@@ -66,7 +81,7 @@ const Login = () => {
                     <p className="text-sm text-gray-600">
                         Hesabınız yok mu?{" "}
                         <button
-                            onClick={handleRedirectToSignup}
+                            onClick={() => navigate("/signup")}
                             className="text-blue-500 font-bold hover:underline"
                         >
                             Kayıt Ol
