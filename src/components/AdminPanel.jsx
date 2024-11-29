@@ -55,7 +55,7 @@ const AdminPanel = () => {
                     <ul className="space-y-4">
                         <li>
                             <NavLink
-                                to="/home/dashboard"
+                                to="/home"
                                 className={({ isActive }) =>
                                     `flex items-center space-x-4 px-4 py-3 rounded-lg ${
                                         isActive ? "bg-gray-300" : "hover:bg-gray-200"

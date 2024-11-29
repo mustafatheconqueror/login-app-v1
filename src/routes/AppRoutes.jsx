@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "../components/Login";
 import AdminPanel from "../components/AdminPanel";
 import NotFound from "../components/NotFound";
-import PrivateRoute from "./PrivateRoute"; // PrivateRoute eklendi
+import PrivateRoute from "./PrivateRoute";
+import Signup from "../components/Signup.jsx"; // PrivateRoute eklendi
 
 const AppRoutes = () => {
     return (
@@ -11,6 +12,7 @@ const AppRoutes = () => {
             <Routes>
                 {/* Login Sayfası */}
                 <Route path="/" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
 
                 {/* Admin Panel (Korunan Route) */}
                 <Route

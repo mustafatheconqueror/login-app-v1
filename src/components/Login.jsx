@@ -14,6 +14,10 @@ const Login = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false); // Loading durumu
 
+
+    const handleRedirectToSignup = () => {
+        navigate("/signup");
+    };
     const handleLogin = async (e) => {
         e.preventDefault();
         setError(""); // Hataları sıfırla
@@ -116,6 +120,18 @@ const Login = () => {
                         </button>
                     </div>
                 </form>
+                {/* Login Link */}
+                <div className="text-center">
+                    <p className="text-sm text-gray-600">
+                        hesabınız yok mu?{" "}
+                        <button
+                            onClick={handleRedirectToSignup}
+                            className="text-blue-500 font-bold hover:underline"
+                        >
+                            Kayıt Ol
+                        </button>
+                    </p>
+                </div>
             </div>
         </div>
     );
